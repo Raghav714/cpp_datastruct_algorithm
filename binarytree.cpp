@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+
 class Node{
 	public:
 	int data;
@@ -7,6 +8,7 @@ class Node{
 	Node* right_child;
 };
 
+Node* loc = NULL;
 int Inorder(Node* root){
 	if(!root)
 		return 0;
@@ -57,6 +59,43 @@ int Insert(Node* root, int key){
 	Insert(root->right_child,key);
 	return 0;
 }
+int hight(Node* root){
+	if(!root)
+		return 0;
+	int lhight = hight(root->left_child);
+	int rhight = hight(root->right_child);
+	if(lhight>rhight)
+		return (lhight+1);
+	else
+		return (rhight+1);
+}
+int find(Node* root,int key){
+	if(!root)
+		return 0;
+	if (key==root->data){
+		loc = root;}
+	else{
+		find(root->left_child, key);
+		find(root->right_child, key);
+	}	
+}
+int deletenode(Node* root, int key){
+	int x;
+	Node* point = root;
+	//cout<<"point data"<<point->data;
+	find(root, key);
+	cout<<"\nloc "<<loc;
+	while(point->right_child){
+		if(degree(point->right_child)==0){
+			x = point->right_child->data;
+			point->right_child = NULL;
+		}
+		else
+			point = point->right_child;
+	}
+	loc->data = x;
+	return 0;
+}
 int main(){
 	Node* root = NULL;
 	//Node* first = NULL;
@@ -70,6 +109,10 @@ int main(){
 	//root->left_child = first;
 	root->right_child = second;
 	Insert(root,5);
+	cout<<"\nHight "<<hight(root);
+	find(root,7);
+	cout<<"\n data "<<loc->data;
+	deletenode(root,5);
 	//cout<<"degree of 1:- " << degree(root);
 	//cout<<"degree of 2:- " << degree(first);
 	//cout<<"degree of 3:- " << degree(second);		
