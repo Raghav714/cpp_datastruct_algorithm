@@ -38,7 +38,7 @@ int main(){
 	Node* root = NULL;
 	int ch, item;
 	do{
-		cout<<"\nEnter the Choice:-\n 1. Insert\n 2. Show\n 5. Exit\n";
+		cout<<"\nEnter the Choice:-\n 1. Insert\n 2. Show\n 3. Exit\n";
 		cin>>ch;
 		switch(ch){
 			case 1:
@@ -57,6 +57,6 @@ int main(){
 			default:
 			cout<<"\nThank You!!";
 			}
-	}while(ch!=5);
+	}while(ch!=3);
 	return 0;
 }
